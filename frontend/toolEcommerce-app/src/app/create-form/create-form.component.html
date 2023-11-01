@@ -1,0 +1,169 @@
+<form>
+  <div class="space-y-4">
+    <!-- brandId -->
+    <div class="form-control">
+      <label for="brandId" class="label">Brand:</label>
+      <select
+        id="brandId"
+        name="brandId"
+        [(ngModel)]="params.brandId"
+        [class.input-error]="inputValidation['brandId']"
+        class="select select-bordered"
+      >
+        <option value="0" disabled selected>Select a option</option>
+        <option value="1">Brand 1</option>
+        <option value="2">Brand 2</option>
+        <option value="3">Brand 3</option>
+        <option value="4">Brand 4</option>
+        <option value="5">Brand 5</option>
+      </select>
+      <label class="label" [class.hidden]="!inputValidation['brandId']">
+        <span class="label-text-alt text-error">
+          Please enter a valid value</span
+        >
+      </label>
+    </div>
+
+    <!-- productId -->
+    <div class="form-control">
+      <label for="productId" class="label">Product:</label>
+      <select
+        id="productId"
+        name="productId"
+        [(ngModel)]="params.productId"
+        [class.input-error]="inputValidation['productId']"
+        class="select select-bordered"
+      >
+        <option value="0" disabled selected>Select a option</option>
+        <option value="1">Product 1</option>
+        <option value="2">Product 2</option>
+        <option value="3">Product 3</option>
+        <option value="4">Product 4</option>
+        <option value="5">Product 5</option>
+        <option value="6">Product 6</option>
+        <option value="7">Product 7</option>
+        <option value="8">Product 8</option>
+        <option value="9">Product 9</option>
+        <option value="10">Product 10</option>
+      </select>
+      <label class="label" [class.hidden]="!inputValidation['productId']">
+        <span class="label-text-alt text-error">
+          Please enter a valid value</span
+        >
+      </label>
+    </div>
+
+    <!-- priceList -->
+    <div class="form-control">
+      <label for="priceList" class="label">Price List:</label>
+      <select
+        id="priceList"
+        name="priceList"
+        [(ngModel)]="params.priceList"
+        [class.input-error]="inputValidation['priceList']"
+        class="select select-bordered"
+      >
+        <option value="0" disabled selected>Select a option</option>
+        <option value="1">Price List 1</option>
+        <option value="2">Price List 2</option>
+        <option value="3">Price List 3</option>
+        <option value="4">Price List 4</option>
+        <option value="5">Price List 5</option>
+      </select>
+      <label class="label" [class.hidden]="!inputValidation['priceList']">
+        <span class="label-text-alt text-error">
+          Please enter a valid value</span
+        >
+      </label>
+    </div>
+
+    <!-- priority -->
+    <div class="form-control">
+      <label for="priority" class="label">Priority:</label>
+      <input
+        type="range"
+        id="priority"
+        name="priority"
+        [(ngModel)]="params.priority"
+        [class.input-error]="inputValidation['priority']"
+        class="range"
+        min="1"
+        max="5"
+      />
+      <div class="w-full flex justify-between text-xs px-2">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+      </div>
+      <label class="label" [class.hidden]="!inputValidation['priority']">
+        <span class="label-text-alt text-error">
+          Please enter a valid value</span
+        >
+      </label>
+    </div>
+
+    <!-- price -->
+    <div class="form-control">
+      <label for="price" class="label">Price:</label>
+      <input
+        type="number"
+        id="price"
+        name="price"
+        [(ngModel)]="params.price"
+        [class.input-error]="inputValidation['price']"
+        class="input input-bordered"
+      />
+      <label class="label" [class.hidden]="!inputValidation['price']">
+        <span class="label-text-alt text-error">
+          Please enter a valid value</span
+        >
+      </label>
+    </div>
+
+    <!-- startDate -->
+    <div class="form-control">
+      <label for="startDate" class="label">Start Date:</label>
+      <input
+        type="datetime-local"
+        id="startDate"
+        name="startDate"
+        [(ngModel)]="params.startDate"
+        [class.input-error]="inputValidation['startDate']"
+        class="input input-bordered"
+      />
+      <label class="label" [class.hidden]="!inputValidation['startDate']">
+        <span class="label-text-alt text-error">
+          Please enter a valid value or correct date</span
+        >
+      </label>
+    </div>
+
+    <!-- endDate -->
+    <div class="form-control">
+      <label for="endDate" class="label">End Date:</label>
+      <input
+        type="datetime-local"
+        id="endDate"
+        name="endDate"
+        class="input input-bordered"
+        [class.input-error]="inputValidation['endDate']"
+        [(ngModel)]="params.endDate"
+      />
+      <label class="label" [class.hidden]="!inputValidation['endDate']">
+        <span class="label-text-alt text-error">
+          Please enter a valid value</span
+        >
+      </label>
+    </div>
+
+    <button
+      type="submit"
+      class="bg-blue-500 text-white py-2 px-4 rounded-lg"
+      (click)="onSubmit()"
+    >
+      Create
+    </button>
+  </div>
+</form>
