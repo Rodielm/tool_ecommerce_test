@@ -1,0 +1,67 @@
+<div class="flex flex-row gap-3 w-full">
+  <div>
+    <div class="card w-80 bg-base-100 shadow-xl p-4">
+      <app-tabs>
+        <app-tab [tabTitle]="'Search'">
+          <app-search-form (resultsEvent)="receiveDataFromChild($event)">
+          </app-search-form>
+          <!-- <div *ngIf="resultsPrice.length > 0">
+            <h2>Search Results:</h2>
+            <ul>
+              <li *ngFor="let result of resultsPrice">
+                {{ result.finalPrice }}
+              </li>
+            </ul>
+          </div> -->
+        </app-tab>
+        <app-tab [tabTitle]="'Create'">
+          <app-create-form (updateEvent)="updatePrices()"></app-create-form>
+        </app-tab>
+      </app-tabs>
+    </div>
+  </div>
+  <div class="flex-1 w-64" *ngIf="resultsPrice.length > 0">
+    <h1 class="text-2xl sm:text-3xl font-extrabold">Prices</h1>
+    <div class="overflow-x-auto">
+      <table class="table">
+        <!-- head -->
+        <thead>
+          <tr>
+            <th></th>
+            <th>Product Id</th>
+            <th>Brand Id</th>
+            <th>Price list</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Final price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let price of resultsPrice; index as i">
+            <th>{{ i + 1 }}</th>
+            <td>{{ price.productId }}</td>
+            <td>{{ price.brandId }}</td>
+            <td>{{ price.priceList }}</td>
+            <td>{{ price.startDate  | date: "medium" }}</td>
+            <td>{{ price.endDate | date: "medium" }}</td>
+            <td>{{ price.finalPrice }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div
+    class="flex items-center justify-center w-full"
+    *ngIf="resultsPrice.length === 0"
+  >
+    <div class="items-center text-center">
+      <h2 class="card-title">Not Results Found</h2>
+      <button
+        (click)="getPrices()"
+        class="bg-blue-500 text-white py-2 px-4 rounded-lg"
+      >
+        Back
+      </button>
+    </div>
+  </div>
+</div>
