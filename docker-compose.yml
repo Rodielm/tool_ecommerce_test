@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  spring:
+    build:
+      context: ./backend
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mariadb
+    networks:
+      - app-network
+
+  angular:
+    build: 
+      context: ./frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - spring
+    networks:
+      - app-network
+
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./scripts/init_ecomerce.sql:/docker-entrypoint-initdb.d/1.sql"
+    env_file:
+      - .env
+    networks:
+      - app-network
+      
+  adminer:
+    image: adminer
+    restart: always
+    depends_on:
+      - mariadb
+    ports:
+      - 18080:8080
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
