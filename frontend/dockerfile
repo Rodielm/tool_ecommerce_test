@@ -1,0 +1,25 @@
+FROM node:18-alpine AS build
+
+WORKDIR /app
+
+COPY toolEcommerce-app/package*.json ./
+
+RUN npm install
+
+COPY toolEcommerce-app/. ./
+
+RUN npm run build
+
+# Use an official NGINX image as a parent image
+FROM nginx:alpine
+
+COPY toolEcommerce-app/nginx.conf /etc/nginx/nginx.conf
+
+# Copy the built Angular app to the NGINX web server directory
+COPY --from=build /app/dist/tool-ecommerce-app /usr/share/nginx/html
+
+# Expose port 80 for HTTP traffic
+EXPOSE 80 4200
+
+# Start NGINX when the container launches
+CMD ["nginx", "-g", "daemon off;"]
